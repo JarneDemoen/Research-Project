@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class AircraftPhysics : MonoBehaviour
@@ -14,9 +15,17 @@ public class AircraftPhysics : MonoBehaviour
     [SerializeField]
     List<ControlSurface> controlSurfaces = null;
 
+    [SerializeField]
+    Text speedtext;
+
     Rigidbody rb;
     float thrustPercent;
     BiVector3 currentForceAndTorque;
+
+    void Update()
+    {
+        speedtext.text = "Speed: " + rb.velocity.magnitude.ToString("F2");
+    }
 
     public void SetThrustPercent(float percent)
     {
@@ -110,7 +119,7 @@ public class AircraftPhysics : MonoBehaviour
         float friction;
         if (isBraking)
         {
-            friction = 0.2f;
+            friction = 0.12f;
         }
         else
         {

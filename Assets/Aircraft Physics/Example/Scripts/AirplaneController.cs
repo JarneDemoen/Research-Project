@@ -53,11 +53,28 @@ public class AirplaneController : MonoBehaviour
         {
             thrustControlSensitivity *= -1;
             flapControlSensitivity *= -1;
+            if (thrustControlSensitivity < 0)
+            {
+                Debug.Log("Thrust control sensitivity is inverted");
+            }
+            else
+            {
+                Debug.Log("Thrust control sensitivity is normal");
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
             brake = !brake;
+
+            if (brake)
+            {
+                Debug.Log("Brake is on");
+            }
+            else
+            {
+                Debug.Log("Brake is off");
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
