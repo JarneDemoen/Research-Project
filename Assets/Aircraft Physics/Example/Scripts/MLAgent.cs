@@ -78,6 +78,7 @@ public class MLAgent : Agent
         continuousActionsOut[3] = Input.GetKey(KeyCode.LeftShift) ? 1f : 0f;
         continuousActionsOut[4] = Input.GetKey(KeyCode.LeftControl) ? 1f : 0f;
         continuousActionsOut[5] = Input.GetKey(KeyCode.B) ? 1f : 0f;
+
     }
 
     private void OnCollisionEnter(Collision other) 
