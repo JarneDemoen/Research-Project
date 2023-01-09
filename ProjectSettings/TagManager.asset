@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wing
+  - Surface
   layers:
   - Default
   - TransparentFX

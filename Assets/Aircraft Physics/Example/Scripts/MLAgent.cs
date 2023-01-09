@@ -1,10 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
-public class AirplaneController : MonoBehaviour
+using Unity.MLAgents;
+using Unity.MLAgents.Sensors;
+using Unity.MLAgents.Actuators;
+public class MLAgent : Agent
 {
     [SerializeField]
     float rollControlSensitivity = 0.15f;
@@ -16,18 +18,79 @@ public class AirplaneController : MonoBehaviour
     float thrustControlSensitivity = 0.2f;
     [SerializeField]
     float flapControlSensitivity = 0.1745f;
-
-
+    
     float pitch;
     float yaw;
     float roll;
     float flap;
+    bool slowDown = false;
 
     float thrustPercent;
     bool brake = false;
 
     AircraftPhysics aircraftPhysics;
     Rotator propeller;
+
+    public override void OnEpisodeBegin()
+    {
+        float randomX = Random.Range(-10f, 10f);
+        float randomZ = Random.Range(-10f, 10f);
+        transform.position = new Vector3(randomX, 282, randomZ);
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        sensor.AddObservation(transform.position);
+        sensor.AddObservation(transform.rotation);
+
+        sensor.AddObservation(aircraftPhysics.velocity);
+        sensor.AddObservation(aircraftPhysics.angularVelocity);
+
+        sensor.AddObservation(pitch);
+        sensor.AddObservation(roll);
+        sensor.AddObservation(yaw);
+
+        sensor.AddObservation(slowDown);
+        sensor.AddObservation(flap);
+        sensor.AddObservation(brake);
+    }
+
+    public override void OnActionReceived(ActionBuffers actionBuffers)
+    {
+        pitch = pitchControlSensitivity * actionBuffers.ContinuousActions[0];
+        roll = rollControlSensitivity * actionBuffers.ContinuousActions[1];
+        yaw = yawControlSensitivity * actionBuffers.ContinuousActions[2];
+
+        slowDown = actionBuffers.ContinuousActions[3] > 0;
+        flap = actionBuffers.ContinuousActions[4];
+        brake = actionBuffers.ContinuousActions[5] > 0;
+
+        AddReward(+1f);
+    }
+
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        ActionSegment<float> continuousActionsOut = actionsOut.ContinuousActions;
+        continuousActionsOut[0] = Input.GetAxis("Vertical");
+        continuousActionsOut[1] = Input.GetAxis("Horizontal");
+        continuousActionsOut[2] = Input.GetAxis("Yaw");
+
+        continuousActionsOut[3] = Input.GetKey(KeyCode.LeftShift) ? 1f : 0f;
+        continuousActionsOut[4] = Input.GetKey(KeyCode.LeftControl) ? 1f : 0f;
+        continuousActionsOut[5] = Input.GetKey(KeyCode.B) ? 1f : 0f;
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        if (other.gameObject.CompareTag("Surface"))
+        {
+            AddReward(-100f);
+            EndEpisode();
+
+            Debug.Log("Crashed, episode ended");
+            Debug.Log("Reward: " + GetCumulativeReward());
+        }
+    }
 
     private void Start()
     {

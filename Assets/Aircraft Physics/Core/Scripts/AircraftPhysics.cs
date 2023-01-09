@@ -17,6 +17,8 @@ public class AircraftPhysics : MonoBehaviour
 
     [SerializeField]
     Text speedtext;
+    public float velocity;
+    public float angularVelocity;
 
     Rigidbody rb;
     float thrustPercent;
@@ -24,7 +26,9 @@ public class AircraftPhysics : MonoBehaviour
 
     void Update()
     {
-        speedtext.text = "Speed: " + rb.velocity.magnitude.ToString("F2");
+        velocity = rb.velocity.magnitude;
+        angularVelocity = rb.angularVelocity.magnitude;
+        speedtext.text = "Speed: " + velocity.ToString("F2");
     }
 
     public void SetThrustPercent(float percent)
