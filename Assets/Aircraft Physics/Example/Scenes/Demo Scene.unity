@@ -1229,7 +1229,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3083333, y: 1}
+    m_SensorSize: {x: 2.0866888, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1955,7 +1955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82a38eccd42dea468bf6634fdcf8e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 6000
+  thrust: 3000
   aerodynamicSurfaces:
   - {fileID: 1075455996}
   - {fileID: 1424892320}

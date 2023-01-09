@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 public class AirplaneController : MonoBehaviour
 {
     [SerializeField]
-    float rollControlSensitivity = 0.2f;
+    float rollControlSensitivity = 0.15f;
     [SerializeField]
     float pitchControlSensitivity = 0.2f;
     [SerializeField]
-    float yawControlSensitivity = 0.2f;
+    float yawControlSensitivity = 0.6f;
     [SerializeField]
-    float thrustControlSensitivity = 0.01f;
+    float thrustControlSensitivity = 0.2f;
     [SerializeField]
-    float flapControlSensitivity = 0.15f;
+    float flapControlSensitivity = 0.1745f;
 
 
     float pitch;
