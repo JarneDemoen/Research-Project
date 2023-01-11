@@ -101,4 +101,11 @@ public class AirplaneController : MonoBehaviour
         aircraftPhysics.SetThrustPercent(thrustPercent);
         aircraftPhysics.Brake(brake);
     }
+
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Surface"))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
 }
