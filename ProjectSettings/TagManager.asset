@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Wing
   - Surface
+  - Runway
+  - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -13,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Runway
+  - Ground
   - 
   - 
   - 
@@ -42,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Runway
+    uniqueID: 854660091
+    locked: 0
+  - name: Ground
+    uniqueID: 2550292795
     locked: 0

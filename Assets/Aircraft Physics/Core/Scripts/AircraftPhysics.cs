@@ -24,13 +24,6 @@ public class AircraftPhysics : MonoBehaviour
     float thrustPercent;
     BiVector3 currentForceAndTorque;
 
-    void Update()
-    {
-        velocity = rb.velocity.magnitude;
-        angularVelocity = rb.angularVelocity.magnitude;
-        speedtext.text = "Speed: " + velocity.ToString("F2");
-    }
-
     public void SetThrustPercent(float percent)
     {
         thrustPercent = percent;
