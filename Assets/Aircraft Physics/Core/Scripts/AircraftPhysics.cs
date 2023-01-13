@@ -15,8 +15,6 @@ public class AircraftPhysics : MonoBehaviour
     [SerializeField]
     List<ControlSurface> controlSurfaces = null;
 
-    [SerializeField]
-    Text speedtext;
     public float velocity;
     public float angularVelocity;
 

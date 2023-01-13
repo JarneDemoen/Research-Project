@@ -9,6 +9,7 @@ TagManager:
   - Runway
   - Ground
   - Wall
+  - Target
   layers:
   - Default
   - TransparentFX
