@@ -41,6 +41,7 @@ public class AirplaneController : Agent
     AircraftPhysics aircraftPhysics;
     Rotator propeller;
     Rigidbody rb;
+    private Camera cam;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI velocityText;
@@ -77,7 +78,7 @@ public class AirplaneController : Agent
     {
         int randomZ = Random.Range(-190, 190);
 
-        if (randomZ < 0)
+        if (randomZ > 0)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
@@ -86,16 +87,18 @@ public class AirplaneController : Agent
 
     private void Update()
     {
-        velocityText.text = "Velocity: " + speed;
-        angularVelocityText.text = "Angular Velocity: " + angularSpeed;
+        // velocityText.text = "Velocity: " + speed;
+        // angularVelocityText.text = "Angular Velocity: " + angularSpeed;
         rewardText.text = "Reward: " + GetCumulativeReward();
-        rollText.text = "Roll: " + roll;
-        yawText.text = "Yaw: " + yaw;
-        pitchText.text = "Pitch: " + pitch;
-        flapsText.text = "Flaps: " + flap;
-        thrustText.text = "Thrust: " + thrustPercent;
-        brakeText.text = "Brake: " + brake;
-        invertedText.text = "Inverted: " + inverted;
+        // rollText.text = "Roll: " + roll;
+        // yawText.text = "Yaw: " + yaw;
+        // pitchText.text = "Pitch: " + pitch;
+        // flapsText.text = "Flaps: " + flap;
+        // thrustText.text = "Thrust: " + thrustPercent;
+        // brakeText.text = "Brake: " + brake;
+        // invertedText.text = "Inverted: " + inverted;
+
+        propeller.speed = thrustPercent * 1500f;
 
         // if (Input.GetKeyDown(KeyCode.R))
         // {
@@ -106,7 +109,6 @@ public class AirplaneController : Agent
         // {
         //     SetThrust(thrustPercent + thrustControlSensitivity);
         // }
-        propeller.speed = thrustPercent * 1500f;
 
         // if (Input.GetKeyDown(KeyCode.LeftShift))
         // {
