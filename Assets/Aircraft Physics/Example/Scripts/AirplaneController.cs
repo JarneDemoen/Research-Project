@@ -33,7 +33,7 @@ public class AirplaneController : MonoBehaviour
     {
         aircraftPhysics = GetComponent<AircraftPhysics>();
         propeller = FindObjectOfType<Rotator>();
-        SetThrust(0);
+        SetThrust(1500f);
     }
 
     private void Update()
@@ -43,51 +43,51 @@ public class AirplaneController : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            SetThrust(thrustPercent + thrustControlSensitivity);
-        }
+        // if (Input.GetKey(KeyCode.Space))
+        // {
+        //     SetThrust(thrustPercent + thrustControlSensitivity);
+        // }
         propeller.speed = thrustPercent * 1500f;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            thrustControlSensitivity *= -1;
-            flapControlSensitivity *= -1;
-            if (thrustControlSensitivity < 0)
-            {
-                Debug.Log("Inverted");
-            }
-            else
-            {
-                Debug.Log("Normal");
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.LeftShift))
+        // {
+        //     thrustControlSensitivity *= -1;
+        //     flapControlSensitivity *= -1;
+        //     if (thrustControlSensitivity < 0)
+        //     {
+        //         Debug.Log("Inverted");
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("Normal");
+        //     }
+        // }
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            brake = !brake;
+        // if (Input.GetKeyDown(KeyCode.B))
+        // {
+        //     brake = !brake;
 
-            if (brake)
-            {
-                Debug.Log("Brake is on");
-            }
-            else
-            {
-                Debug.Log("Brake is off");
-            }
-        }
+        //     if (brake)
+        //     {
+        //         Debug.Log("Brake is on");
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("Brake is off");
+        //     }
+        // }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            flap += flapControlSensitivity;
-            //clamp
-            flap = Mathf.Clamp(flap, 0f, Mathf.Deg2Rad * 40);
-            Debug.Log("Flap angle is " + flap * Mathf.Rad2Deg + " degrees");
-        }
+        // if (Input.GetKeyDown(KeyCode.LeftControl))
+        // {
+        //     flap += flapControlSensitivity;
+        //     //clamp
+        //     flap = Mathf.Clamp(flap, 0f, Mathf.Deg2Rad * 40);
+        //     Debug.Log("Flap angle is " + flap * Mathf.Rad2Deg + " degrees");
+        // }
 
-        pitch = pitchControlSensitivity * Input.GetAxis("Vertical");
-        roll = rollControlSensitivity * Input.GetAxis("Horizontal");
-        yaw = yawControlSensitivity * Input.GetAxis("Yaw");
+        // pitch = pitchControlSensitivity * Input.GetAxis("Vertical");
+        // roll = rollControlSensitivity * Input.GetAxis("Horizontal");
+        // yaw = yawControlSensitivity * Input.GetAxis("Yaw");
     }
 
     private void SetThrust(float percent)
