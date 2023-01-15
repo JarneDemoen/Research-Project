@@ -31,11 +31,13 @@ public class AirplaneController : Agent
 
     float thrustPercent;
     bool brake;
+    bool brakeInfo = false;
     float speed;
     float angularSpeed;
 
     bool thrust;
     bool inverted;
+    bool invertedInfo = false;
     bool flaps;
 
     AircraftPhysics aircraftPhysics;
@@ -45,11 +47,7 @@ public class AirplaneController : Agent
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI velocityText;
-    [SerializeField] TextMeshProUGUI angularVelocityText;
     [SerializeField] TextMeshProUGUI rewardText;
-    [SerializeField] TextMeshProUGUI rollText;
-    [SerializeField] TextMeshProUGUI yawText;
-    [SerializeField] TextMeshProUGUI pitchText;
     [SerializeField] TextMeshProUGUI thrustText;
     [SerializeField] TextMeshProUGUI brakeText;
     [SerializeField] TextMeshProUGUI invertedText;
@@ -76,27 +74,28 @@ public class AirplaneController : Agent
 
     private void SpawnRandomPosition()
     {
-        int randomZ = Random.Range(-190, 190);
+        int randomZ = Random.Range(-600, 620);
 
         if (randomZ > 0)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         transform.position = new Vector3(0, 2, randomZ);
+        transform.position = new Vector3(0, 2, 620);
     }
 
     private void Update()
     {
-        // velocityText.text = "Velocity: " + speed;
+        velocityText.text = "Velocity: " + speed;
         // angularVelocityText.text = "Angular Velocity: " + angularSpeed;
         rewardText.text = "Reward: " + GetCumulativeReward();
         // rollText.text = "Roll: " + roll;
         // yawText.text = "Yaw: " + yaw;
         // pitchText.text = "Pitch: " + pitch;
-        // flapsText.text = "Flaps: " + flap;
-        // thrustText.text = "Thrust: " + thrustPercent;
-        // brakeText.text = "Brake: " + brake;
-        // invertedText.text = "Inverted: " + inverted;
+        flapsText.text = "Flaps: " + flap;
+        thrustText.text = "Thrust: " + thrustPercent;
+        brakeText.text = "Brake: " + brakeInfo;
+        invertedText.text = "Inverted: " + invertedInfo;
 
         propeller.speed = thrustPercent * 1500f;
 
@@ -160,14 +159,14 @@ public class AirplaneController : Agent
     {
         aircraftPhysics.SetControlSurfecesAngles(pitch, roll, yaw, flap);
         aircraftPhysics.SetThrustPercent(thrustPercent);
-        aircraftPhysics.Brake(brake);
+        aircraftPhysics.Brake(brakeInfo);
     }
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Surface"))
         {
             EndEpisode();
-            AddReward(-100f);
+            AddReward(-1000f);
         }
     }
 
@@ -210,6 +209,7 @@ public class AirplaneController : Agent
         {
             thrustControlSensitivity *= -1;
             flapControlSensitivity *= -1;
+            invertedInfo = !invertedInfo;
         }
 
         if (flaps)
@@ -217,6 +217,11 @@ public class AirplaneController : Agent
             flap += flapControlSensitivity;
             //clamp
             flap = Mathf.Clamp(flap, 0f, Mathf.Deg2Rad * 40);
+        }
+
+        if (brake)
+        {
+            brakeInfo = !brakeInfo;
         }
 
         roll = rollControlSensitivity * rollInput;
@@ -265,8 +270,9 @@ public class AirplaneController : Agent
     {
         if (other.gameObject.CompareTag("Target"))
         {
-            AddReward(1000f);
-            EndEpisode();
+            AddReward(100f);
+            // EndEpisode();
+            SetTargetPosition();
         }
     }
 }
