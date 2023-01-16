@@ -22,12 +22,14 @@ public class AirplaneController : Agent
     float flapControlSensitivity = 0.1745f;
 
     [SerializeField]
-    GameObject target;
+    // GameObject target;
 
     float pitch;
     float yaw;
     float roll;
     float flap;
+    private int steps = 0;
+    private int goalsAchieved = 0;
 
     float thrustPercent;
     bool brake;
@@ -36,11 +38,15 @@ public class AirplaneController : Agent
     float angularSpeed;
 
     bool crashed = false;
+    bool collected = false;
 
     bool thrust;
     bool inverted;
     bool invertedInfo = false;
     bool flaps;
+
+    Target target;
+    GameObject targetObject;
 
     AircraftPhysics aircraftPhysics;
     Rotator propeller;
@@ -57,12 +63,16 @@ public class AirplaneController : Agent
     [SerializeField] TextMeshProUGUI brakeText;
     [SerializeField] TextMeshProUGUI invertedText;
     [SerializeField] TextMeshProUGUI flapsText;
+    [SerializeField] TextMeshProUGUI stepsText;
+    [SerializeField] TextMeshProUGUI goalsText;
+    [SerializeField] TextMeshProUGUI collectedText;
 
     public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
         aircraftPhysics = GetComponent<AircraftPhysics>();
         propeller = FindObjectOfType<Rotator>();
+        target = FindObjectOfType<Target>();
     }
 
     public override void OnEpisodeBegin()
@@ -78,6 +88,8 @@ public class AirplaneController : Agent
         flaps = false;
         invertedInfo = false;
         brakeInfo = false;
+        steps = 0;
+        goalsAchieved = 0;
 
         if (thrustControlSensitivity < 0)
         {
@@ -86,7 +98,13 @@ public class AirplaneController : Agent
         }
         
         SpawnRandomPosition();
-        SetTargetPosition();
+
+        if (targetObject != null)
+        {
+            Destroy(targetObject);
+        }
+
+        targetObject = target.InstantiateTarget();
         SetThrust(1500f);
     }
 
@@ -109,17 +127,16 @@ public class AirplaneController : Agent
         }
     }
 
-    private void SetTargetPosition()
-    {
-        float randomX = Random.Range(-1200, 900);
-        float randomY = Random.Range(100, 400);
-        float randomZ = Random.Range(-300, 600);
-        target.transform.position = new Vector3(randomX, randomY, randomZ);
-    }
-
     private void SetThrust(float percent)
     {
         thrustPercent = Mathf.Clamp01(percent);
+    }
+
+    private IEnumerator SetCollected(bool value)
+    {
+        yield return new WaitForSecondsRealtime(1f);
+
+        collected = value;
     }
 
 
@@ -162,14 +179,18 @@ public class AirplaneController : Agent
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.CompareTag("Target"))
+        if (other.gameObject.CompareTag("Target") && collected == false)
         {
             AddReward(100f);
-            SetTargetPosition();
+            goalsAchieved++;
+            Debug.Log("Goal Achieved " + goalsAchieved);
+            Destroy(targetObject);
+            targetObject = target.InstantiateTarget();
+            collected = true;
+            StartCoroutine(SetCollected(false));
         }
     }
 
-    
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.position); // 3
@@ -192,6 +213,8 @@ public class AirplaneController : Agent
         inverted = actions.DiscreteActions[1] == 1; // 0 or 1
         brake = actions.DiscreteActions[2] == 1; // 0 or 1
         flaps = actions.DiscreteActions[3] == 1; // 0 or 1
+
+        steps++;
 
         if (thrust)
         {
@@ -267,6 +290,9 @@ public class AirplaneController : Agent
         thrustText.text = "Thrust: " + thrustPercent;
         brakeText.text = "Brake: " + brakeInfo;
         invertedText.text = "Inverted: " + invertedInfo;
+        stepsText.text = "Steps: " + steps;
+        goalsText.text = "Goals: " + goalsAchieved;
+        collectedText.text = "Collected: " + collected;
 
         propeller.speed = thrustPercent * 1500f;
 
