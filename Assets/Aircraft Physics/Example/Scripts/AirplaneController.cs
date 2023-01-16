@@ -35,6 +35,8 @@ public class AirplaneController : Agent
     float speed;
     float angularSpeed;
 
+    bool crashed = false;
+
     bool thrust;
     bool inverted;
     bool invertedInfo = false;
@@ -43,7 +45,10 @@ public class AirplaneController : Agent
     AircraftPhysics aircraftPhysics;
     Rotator propeller;
     Rigidbody rb;
-    private Camera cam;
+    [SerializeField]
+    Camera cam;
+
+    int episode = 0;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI velocityText;
@@ -53,101 +58,63 @@ public class AirplaneController : Agent
     [SerializeField] TextMeshProUGUI invertedText;
     [SerializeField] TextMeshProUGUI flapsText;
 
-
-    private void Start()
+    public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
-        SpawnRandomPosition();
-        SetTargetPosition();
         aircraftPhysics = GetComponent<AircraftPhysics>();
         propeller = FindObjectOfType<Rotator>();
-        SetThrust(1500f);
     }
 
-    private void SetTargetPosition()
+    public override void OnEpisodeBegin()
     {
-        int randomX = Random.Range(-1200, 900);
-        int randomY = Random.Range(100, 400);
-        int randomZ = Random.Range(-300, 600);
-        target.transform.position = new Vector3(randomX, randomY, randomZ);
+        episode++;
+        Debug.Log("Episode Begin " + episode);
+        roll = 0;
+        pitch = 0;
+        yaw = 0;
+        flap = 0;
+        inverted = false;
+        brake = false;
+        flaps = false;
+        invertedInfo = false;
+        brakeInfo = false;
+
+        if (thrustControlSensitivity < 0)
+        {
+            thrustControlSensitivity *= -1;
+            flapControlSensitivity *= -1;
+        }
+        
+        SpawnRandomPosition();
+        SetTargetPosition();
+        SetThrust(1500f);
     }
 
     private void SpawnRandomPosition()
     {
-        int randomZ = Random.Range(-600, 620);
+        float randomZ = Random.Range(-300, 320);
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        cam.transform.position = new Vector3(0, 6.9f, randomZ-15);
+        cam.transform.rotation = Quaternion.Euler(11.504f, 0, 0);
+
+        transform.position = new Vector3(0, 2, randomZ);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
 
         if (randomZ > 0)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-        transform.position = new Vector3(0, 2, randomZ);
-        transform.position = new Vector3(0, 2, 620);
     }
 
-    private void Update()
+    private void SetTargetPosition()
     {
-        velocityText.text = "Velocity: " + speed;
-        // angularVelocityText.text = "Angular Velocity: " + angularSpeed;
-        rewardText.text = "Reward: " + GetCumulativeReward();
-        // rollText.text = "Roll: " + roll;
-        // yawText.text = "Yaw: " + yaw;
-        // pitchText.text = "Pitch: " + pitch;
-        flapsText.text = "Flaps: " + flap;
-        thrustText.text = "Thrust: " + thrustPercent;
-        brakeText.text = "Brake: " + brakeInfo;
-        invertedText.text = "Inverted: " + invertedInfo;
-
-        propeller.speed = thrustPercent * 1500f;
-
-        // if (Input.GetKeyDown(KeyCode.R))
-        // {
-        //     SceneManager.LoadScene(0);
-        // }
-
-        // if (Input.GetKey(KeyCode.Space))
-        // {
-        //     SetThrust(thrustPercent + thrustControlSensitivity);
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.LeftShift))
-        // {
-        //     thrustControlSensitivity *= -1;
-        //     flapControlSensitivity *= -1;
-        //     if (thrustControlSensitivity < 0)
-        //     {
-        //         Debug.Log("Inverted");
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("Normal");
-        //     }
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.B))
-        // {
-        //     brake = !brake;
-
-        //     if (brake)
-        //     {
-        //         Debug.Log("Brake is on");
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("Brake is off");
-        //     }
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.LeftControl))
-        // {
-        //     flap += flapControlSensitivity;
-        //     //clamp
-        //     flap = Mathf.Clamp(flap, 0f, Mathf.Deg2Rad * 40);
-        //     Debug.Log("Flap angle is " + flap * Mathf.Rad2Deg + " degrees");
-        // }
-
-        // pitch = pitchControlSensitivity * Input.GetAxis("Vertical");
-        // roll = rollControlSensitivity * Input.GetAxis("Horizontal");
-        // yaw = yawControlSensitivity * Input.GetAxis("Yaw");
+        float randomX = Random.Range(-1200, 900);
+        float randomY = Random.Range(100, 400);
+        float randomZ = Random.Range(-300, 600);
+        target.transform.position = new Vector3(randomX, randomY, randomZ);
     }
 
     private void SetThrust(float percent)
@@ -155,28 +122,54 @@ public class AirplaneController : Agent
         thrustPercent = Mathf.Clamp01(percent);
     }
 
-    private void FixedUpdate()
-    {
-        aircraftPhysics.SetControlSurfecesAngles(pitch, roll, yaw, flap);
-        aircraftPhysics.SetThrustPercent(thrustPercent);
-        aircraftPhysics.Brake(brakeInfo);
-    }
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Surface"))
         {
-            EndEpisode();
+            if (crashed)
+            {
+                return;
+            }
             AddReward(-1000f);
+            Debug.Log("End Episode " + episode);
+            Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
+            crashed = true;
+            roll = 0;
+            pitch = 0;
+            yaw = 0;
+            flap = 0;
+            inverted = false;
+            brake = false;
+            flaps = false;
+            invertedInfo = false;
+            brakeInfo = false;
+            EndEpisode();
+        }
+
+        if (other.gameObject.CompareTag("Runway"))
+        {
+            crashed = false;
+            // if the angle of the plane is more than 30 degrees, it is considered a crash
+            if (Vector3.Angle(transform.up, Vector3.up) > 30)
+            {
+                AddReward(-1000f);
+                Debug.Log("End Episode " + episode);
+                Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
+                EndEpisode();
+            }
         }
     }
 
-    public override void OnEpisodeBegin()
+    private void OnTriggerEnter(Collider other) 
     {
-        SpawnRandomPosition();
-        SetTargetPosition();
-        SetThrust(1500f);
+        if (other.gameObject.CompareTag("Target"))
+        {
+            AddReward(100f);
+            SetTargetPosition();
+        }
     }
 
+    
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.position); // 3
@@ -266,13 +259,25 @@ public class AirplaneController : Agent
         return reward;
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void Update()
     {
-        if (other.gameObject.CompareTag("Target"))
-        {
-            AddReward(100f);
-            // EndEpisode();
-            SetTargetPosition();
-        }
+        velocityText.text = "Velocity: " + speed;
+        rewardText.text = "Reward: " + GetCumulativeReward();
+        flapsText.text = "Flaps: " + flap;
+        thrustText.text = "Thrust: " + thrustPercent;
+        brakeText.text = "Brake: " + brakeInfo;
+        invertedText.text = "Inverted: " + invertedInfo;
+
+        propeller.speed = thrustPercent * 1500f;
+
+    }
+
+    private void FixedUpdate()
+    {
+        aircraftPhysics.SetControlSurfecesAngles(pitch, roll, yaw, flap);
+        aircraftPhysics.SetThrustPercent(thrustPercent);
+        aircraftPhysics.Brake(brakeInfo);
     }
 }
+
+

@@ -21,6 +21,7 @@ public class AircraftPhysics : MonoBehaviour
     Rigidbody rb;
     float thrustPercent;
     BiVector3 currentForceAndTorque;
+    AirplaneController airplaneController;
 
     public void SetThrustPercent(float percent)
     {
@@ -53,6 +54,7 @@ public class AircraftPhysics : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        airplaneController = GetComponent<AirplaneController>();
     }
 
     private void FixedUpdate()
