@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/AircraftPhysics/Example/Scenes/AirplaneAI.unity
+    guid: 0e52ee47cc376064d9b2e8404a8b0ca7
   m_configObjects: {}

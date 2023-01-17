@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1673967741",
+        "python_version": "3.9.13 (main, Oct 13 2022, 21:23:06) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\jarne\\miniconda3\\envs\\tf-gpu\\Scripts\\mlagents-learn Config/airplaneAIconfig1.yaml --run-id=Run2",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.13.1",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1673967752"
+    },
+    "total": 11.115021200000001,
+    "count": 1,
+    "self": 0.00929620000000142,
+    "children": {
+        "run_training.setup": {
+            "total": 0.10427730000000013,
+            "count": 1,
+            "self": 0.10427730000000013
+        },
+        "TrainerController.start_learning": {
+            "total": 11.0014477,
+            "count": 1,
+            "self": 7.209999999879813e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 11.0013629,
+                    "count": 1,
+                    "self": 11.0013629
+                },
+                "TrainerController._save_models": {
+                    "total": 1.270000000097582e-05,
+                    "count": 1,
+                    "self": 1.270000000097582e-05
+                }
+            }
+        }
+    }
+}

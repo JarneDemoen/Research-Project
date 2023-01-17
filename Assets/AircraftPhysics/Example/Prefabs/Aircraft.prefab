@@ -341,7 +341,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 500000
   rollControlSensitivity: 0.15
   pitchControlSensitivity: 0.2
   yawControlSensitivity: 0.6
@@ -349,15 +349,6 @@ MonoBehaviour:
   flapControlSensitivity: 0.1745
   pitch: 0
   cam: {fileID: 0}
-  velocityText: {fileID: 0}
-  rewardText: {fileID: 0}
-  thrustText: {fileID: 0}
-  brakeText: {fileID: 0}
-  invertedText: {fileID: 0}
-  flapsText: {fileID: 0}
-  stepsText: {fileID: 0}
-  goalsText: {fileID: 0}
-  collectedText: {fileID: 0}
 --- !u!114 &6731153352625319289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,8 +399,8 @@ MonoBehaviour:
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 1
+  m_InferenceDevice: 1
+  m_BehaviorType: 0
   m_BehaviorName: AirplaneAI
   TeamId: 0
   m_UseChildSensors: 1
