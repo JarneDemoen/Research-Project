@@ -5,19 +5,19 @@ behaviors:
     hyperparameters:
       batch_size: 1024
       buffer_size: 5120
-      learning_rate: 0.0003
-      beta: 0.005
-      epsilon: 0.2
+      learning_rate: 0.00035
+      beta: 0.0025
+      epsilon: 0.3
       lambd: 0.95
-      num_epoch: 3
+      num_epoch: 5
       shared_critic: false
       learning_rate_schedule: linear
       beta_schedule: linear
       epsilon_schedule: linear
     network_settings:
       normalize: true
-      hidden_units: 128
-      num_layers: 2
+      hidden_units: 264
+      num_layers: 3
       vis_encode_type: simple
       memory: null
       goal_conditioning_type: hyper
@@ -52,15 +52,15 @@ behaviors:
         demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AircraftPhysics\Example\AirplaneAIDemos
     init_path: null
     keep_checkpoints: 15
-    checkpoint_interval: 500000
-    max_steps: 500000
-    time_horizon: 64
-    summary_freq: 50000
+    checkpoint_interval: 1000000
+    max_steps: 50000000
+    time_horizon: 264
+    summary_freq: 100000
     threaded: true
     self_play: null
     behavioral_cloning:
       demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AircraftPhysics\Example\AirplaneAIDemos
-      steps: 50000
+      steps: 750000
       strength: 0.5
       samples_per_update: 0
       num_epoch: null
@@ -78,7 +78,7 @@ env_settings:
 engine_settings:
   width: 84
   height: 84
-  quality_level: 5
+  quality_level: 0
   time_scale: 20
   target_frame_rate: -1
   capture_frame_rate: 60
@@ -89,7 +89,7 @@ checkpoint_settings:
   initialize_from: null
   load_model: false
   resume: false
-  force: false
+  force: true
   train_model: false
   inference: false
   results_dir: results
