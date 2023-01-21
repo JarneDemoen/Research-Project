@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1674297080",
+        "python_version": "3.8.15 (default, Nov 24 2022, 14:38:14) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\jarne\\miniconda3\\envs\\mlagents\\Scripts\\mlagents-learn Assets/AirplaneAI/Config/airplaneAIconfig1.yaml --env=Builds/Aircraft Physics --num-envs=3 --no-graphics",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.13.1",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1674297159"
+    },
+    "total": 79.60250190000001,
+    "count": 1,
+    "self": 10.02994790000001,
+    "children": {
+        "run_training.setup": {
+            "total": 0.1895517,
+            "count": 1,
+            "self": 0.1895517
+        },
+        "TrainerController.start_learning": {
+            "total": 69.3830023,
+            "count": 1,
+            "self": 0.0001259000000004562,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 69.3828424,
+                    "count": 1,
+                    "self": 69.3828424
+                },
+                "TrainerController._save_models": {
+                    "total": 3.399999999942338e-05,
+                    "count": 1,
+                    "self": 3.399999999942338e-05
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -173,3 +174,4 @@ public class ControlSurface
 }
 
 public enum ControlSurfaceType { Pitch, Yaw, Roll, Flap }
+#endif

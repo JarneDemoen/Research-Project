@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,3 +26,4 @@ public class AeroSurfaceConfig : ScriptableObject
         if (stallAngleLow > 0) stallAngleLow = 0;
     }
 }
+#endif

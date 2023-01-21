@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 
 public struct BiVector3
 {
@@ -26,3 +27,4 @@ public struct BiVector3
         return f * a;
     }
 }
+#endif

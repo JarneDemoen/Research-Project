@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using UnityEngine;
 
 public class AeroSurface : MonoBehaviour
@@ -220,3 +221,4 @@ public class AeroSurface : MonoBehaviour
         return Mathf.Clamp01(1 - 0.5f * (flapFraction - 0.1f) / 0.3f);
     }
 }
+#endif
