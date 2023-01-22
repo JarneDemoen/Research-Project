@@ -148,7 +148,7 @@ public class AirplaneController : Agent
             {
                 return;
             }
-            AddReward(-1000f);
+            AddReward(-300f);
             // Debug.Log("End Episode " + episode);
             // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
             crashed = true;
@@ -170,7 +170,7 @@ public class AirplaneController : Agent
             // if the angle of the plane is more than 30 degrees, it is considered a crash
             if (Vector3.Angle(transform.up, Vector3.up) > 30)
             {
-                AddReward(-1000f);
+                AddReward(-300f);
                 // Debug.Log("End Episode " + episode);
                 // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
                 EndEpisode();
@@ -195,13 +195,14 @@ public class AirplaneController : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.position); // 3
-        sensor.AddObservation(transform.rotation); // 3
+        sensor.AddObservation(targetObject.transform.position); // 3
+        // sensor.AddObservation(transform.rotation); // 3
 
-        speed = rb.velocity.magnitude;
-        sensor.AddObservation(speed); // 1
+        // speed = rb.velocity.magnitude;
+        // sensor.AddObservation(speed); // 1
 
-        angularSpeed = rb.angularVelocity.magnitude;
-        sensor.AddObservation(angularSpeed); // 1
+        // angularSpeed = rb.angularVelocity.magnitude;
+        // sensor.AddObservation(angularSpeed); // 1
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -279,7 +280,7 @@ public class AirplaneController : Agent
 
         // calculate the euclidian distance between the position of the target and the position of the agent
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-        reward = 1/(distanceToTarget + 0.1f);
+        reward = 2/(distanceToTarget + 0.1f);
         return reward;
     }
 

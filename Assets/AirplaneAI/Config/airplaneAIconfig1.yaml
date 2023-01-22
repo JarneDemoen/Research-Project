@@ -27,16 +27,16 @@ behaviors:
       extrinsic:
         gamma: 0.95
         strength: 0.99
-      gail:
-        strength: 0.5
-        demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AircraftPhysics\Example\AirplaneAIDemos
-        use_actions: false
+      # gail:
+      #   strength: 0.5
+      #   demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\AirplaneAIDemos
+      #   use_actions: false
 
-    behavioral_cloning:
-      strength: 0.5
-      demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AircraftPhysics\Example\AirplaneAIDemos
-      # steps: 50000
-      steps: 750000
+    # behavioral_cloning:
+    #   strength: 0.5
+    #   demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\AirplaneAIDemos
+    #   # steps: 50000
+    #   steps: 750000
 
     # init_path: null
     keep_checkpoints: 15
