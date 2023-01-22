@@ -1,0 +1,29 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 11616,
+                "file_path": "results\\GPURUN2\\AirplaneAI\\AirplaneAI-11616.onnx",
+                "reward": null,
+                "creation_time": 1674423359.000515,
+                "auxillary_file_paths": [
+                    "results\\GPURUN2\\AirplaneAI\\AirplaneAI-11616.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 11616,
+            "file_path": "results\\GPURUN2\\AirplaneAI.onnx",
+            "reward": null,
+            "creation_time": 1674423359.000515,
+            "auxillary_file_paths": [
+                "results\\GPURUN2\\AirplaneAI\\AirplaneAI-11616.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

@@ -8,6 +8,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using TMPro;
+using System;
 
 public class AirplaneController : Agent
 {
@@ -31,6 +32,8 @@ public class AirplaneController : Agent
     float flap;
     private int steps = 0;
     private int goalsAchieved = 0;
+    float distanceToTarget;
+    float previousDistanceToTarget = 0;
 
     float thrustPercent;
     bool brake;
@@ -53,20 +56,17 @@ public class AirplaneController : Agent
     Rotator propeller;
     Rigidbody rb;
     [SerializeField]
-    Camera cam;
+
+    #nullable enable
+    Camera? cam;
 
     int episode = 0;
 
+    #nullable enable
     [Header("UI")]
-    [SerializeField] TextMeshProUGUI velocityText;
-    [SerializeField] TextMeshProUGUI rewardText;
-    [SerializeField] TextMeshProUGUI thrustText;
-    [SerializeField] TextMeshProUGUI brakeText;
-    [SerializeField] TextMeshProUGUI invertedText;
-    [SerializeField] TextMeshProUGUI flapsText;
-    [SerializeField] TextMeshProUGUI stepsText;
-    [SerializeField] TextMeshProUGUI goalsText;
-    [SerializeField] TextMeshProUGUI collectedText;
+    [SerializeField] TextMeshProUGUI? rewardText;
+    [SerializeField] TextMeshProUGUI? episodeText;
+    [SerializeField] TextMeshProUGUI? distanceText;
 
     public override void Initialize()
     {
@@ -111,14 +111,17 @@ public class AirplaneController : Agent
 
     private void SpawnRandomPosition()
     {
-        float randomZ = Random.Range(-300, 320);
+        float randomZ = UnityEngine.Random.Range(-300, 320);
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        cam.transform.position = new Vector3(0, 6.9f, randomZ-15);
-        cam.transform.rotation = Quaternion.Euler(11.504f, 0, 0);
-
+        if (cam != null)
+        {
+            cam.transform.position = new Vector3(0, 6.9f, randomZ-15);
+            cam.transform.rotation = Quaternion.Euler(11.504f, 0, 0);
+        }
+        
         transform.position = new Vector3(0, 2, randomZ);
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -140,6 +143,21 @@ public class AirplaneController : Agent
         collected = value;
     }
 
+    private void FinishEpisode()
+    {
+        crashed = true;
+        roll = 0;
+        pitch = 0;
+        yaw = 0;
+        flap = 0;
+        inverted = false;
+        brake = false;
+        flaps = false;
+        invertedInfo = false;
+        brakeInfo = false;
+        EndEpisode();
+    }
+
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Surface"))
@@ -151,17 +169,7 @@ public class AirplaneController : Agent
             AddReward(-300f);
             // Debug.Log("End Episode " + episode);
             // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
-            crashed = true;
-            roll = 0;
-            pitch = 0;
-            yaw = 0;
-            flap = 0;
-            inverted = false;
-            brake = false;
-            flaps = false;
-            invertedInfo = false;
-            brakeInfo = false;
-            EndEpisode();
+            FinishEpisode();
         }
 
         if (other.gameObject.CompareTag("Runway"))
@@ -173,7 +181,7 @@ public class AirplaneController : Agent
                 AddReward(-300f);
                 // Debug.Log("End Episode " + episode);
                 // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
-                EndEpisode();
+                FinishEpisode();
             }
         }
     }
@@ -182,6 +190,7 @@ public class AirplaneController : Agent
     {
         if (other.gameObject == targetObject.gameObject && collected == false)
         {
+            Debug.Log("Goal achieved!!!!");
             AddReward(100f);
             goalsAchieved++;
             // Debug.Log("Goal Achieved " + goalsAchieved);
@@ -277,26 +286,24 @@ public class AirplaneController : Agent
     public float CalculateReward()
     {
         float reward = 0f;
+        distanceToTarget = (float)Math.Sqrt(Math.Pow(transform.position.x - targetObject.transform.position.x, 2) + 
+        Math.Pow(transform.position.y  - targetObject.transform.position.y, 2) + Math.Pow(transform.position.z  - targetObject.transform.position.z, 2));
 
-        // calculate the euclidian distance between the position of the target and the position of the agent
-        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-        reward = 2/(distanceToTarget + 0.1f);
+        reward = 10f/(distanceToTarget + 0.001f);
+
         return reward;
     }
 
     private void Update()
     {
-        velocityText.text = "Velocity: " + speed;
-        rewardText.text = "Reward: " + GetCumulativeReward();
-        flapsText.text = "Flaps: " + flap;
-        thrustText.text = "Thrust: " + thrustPercent;
-        brakeText.text = "Brake: " + brakeInfo;
-        invertedText.text = "Inverted: " + invertedInfo;
-        stepsText.text = "Steps: " + steps;
-        goalsText.text = "Goals: " + goalsAchieved;
-        collectedText.text = "Collected: " + collected;
-
         propeller.speed = thrustPercent * 1500f;
+
+        if (rewardText != null && episodeText != null && distanceText != null)
+        {
+            rewardText.text = "Reward: " + GetCumulativeReward();
+            episodeText.text = "Episode: " + episode;
+            distanceText.text = "Distance: " + distanceToTarget;
+        }
 
     }
 
