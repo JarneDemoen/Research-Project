@@ -166,7 +166,7 @@ public class AirplaneController : Agent
             {
                 return;
             }
-            AddReward(-300f);
+            AddReward(-1000f);
             // Debug.Log("End Episode " + episode);
             // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
             FinishEpisode();
@@ -178,7 +178,7 @@ public class AirplaneController : Agent
             // if the angle of the plane is more than 30 degrees, it is considered a crash
             if (Vector3.Angle(transform.up, Vector3.up) > 30)
             {
-                AddReward(-300f);
+                AddReward(-1000f);
                 // Debug.Log("End Episode " + episode);
                 // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
                 FinishEpisode();

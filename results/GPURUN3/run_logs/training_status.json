@@ -1,0 +1,155 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 4999823,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-4999823.onnx",
+                "reward": -982.9727463722229,
+                "creation_time": 1674434053.673395,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-4999823.pt"
+                ]
+            },
+            {
+                "steps": 5499847,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-5499847.onnx",
+                "reward": -992.9685671329498,
+                "creation_time": 1674434563.251717,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-5499847.pt"
+                ]
+            },
+            {
+                "steps": 5999840,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-5999840.onnx",
+                "reward": -986.9396779537201,
+                "creation_time": 1674435057.676622,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-5999840.pt"
+                ]
+            },
+            {
+                "steps": 6499830,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-6499830.onnx",
+                "reward": -988.8506665229797,
+                "creation_time": 1674435549.146832,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-6499830.pt"
+                ]
+            },
+            {
+                "steps": 6999853,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-6999853.onnx",
+                "reward": -990.4140278100967,
+                "creation_time": 1674436045.4094062,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-6999853.pt"
+                ]
+            },
+            {
+                "steps": 7499967,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-7499967.onnx",
+                "reward": -980.2754553159078,
+                "creation_time": 1674436533.7155788,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-7499967.pt"
+                ]
+            },
+            {
+                "steps": 7999825,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-7999825.onnx",
+                "reward": -979.1992588043213,
+                "creation_time": 1674437027.9669998,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-7999825.pt"
+                ]
+            },
+            {
+                "steps": 8499874,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-8499874.onnx",
+                "reward": null,
+                "creation_time": 1674437516.3871126,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-8499874.pt"
+                ]
+            },
+            {
+                "steps": 8999875,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-8999875.onnx",
+                "reward": -987.656022310257,
+                "creation_time": 1674438008.1246495,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-8999875.pt"
+                ]
+            },
+            {
+                "steps": 9499896,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-9499896.onnx",
+                "reward": -975.0175685882568,
+                "creation_time": 1674438507.6137888,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-9499896.pt"
+                ]
+            },
+            {
+                "steps": 9999930,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-9999930.onnx",
+                "reward": -980.8699812889099,
+                "creation_time": 1674439005.397316,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-9999930.pt"
+                ]
+            },
+            {
+                "steps": 10499952,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-10499952.onnx",
+                "reward": null,
+                "creation_time": 1674439497.2113123,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-10499952.pt"
+                ]
+            },
+            {
+                "steps": 10999885,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-10999885.onnx",
+                "reward": -983.3087837696075,
+                "creation_time": 1674439990.292958,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-10999885.pt"
+                ]
+            },
+            {
+                "steps": 11499903,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-11499903.onnx",
+                "reward": -989.611290136973,
+                "creation_time": 1674440487.5382564,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-11499903.pt"
+                ]
+            },
+            {
+                "steps": 11667519,
+                "file_path": "results\\GPURUN3\\AirplaneAI\\AirplaneAI-11667519.onnx",
+                "reward": null,
+                "creation_time": 1674440777.533379,
+                "auxillary_file_paths": [
+                    "results\\GPURUN3\\AirplaneAI\\AirplaneAI-11667519.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 11667519,
+            "file_path": "results\\GPURUN3\\AirplaneAI.onnx",
+            "reward": null,
+            "creation_time": 1674440777.533379,
+            "auxillary_file_paths": [
+                "results\\GPURUN3\\AirplaneAI\\AirplaneAI-11667519.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

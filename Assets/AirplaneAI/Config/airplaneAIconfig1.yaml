@@ -27,22 +27,22 @@ behaviors:
       extrinsic:
         gamma: 0.95
         strength: 0.99
-    #   gail:
-    #     strength: 0.5
-    #     demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\AirplaneAIDemos\Demo.demo
-    #     use_actions: false
+      gail:
+        strength: 0.5
+        demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\AirplaneAIDemos
+        use_actions: false
 
-    # behavioral_cloning:
-    #   strength: 0.5
-    #   demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\AirplaneAIDemos\Demo.demo
-    #   # steps: 50000
-    #   # steps: 750000
+    behavioral_cloning:
+      strength: 0.5
+      demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\AirplaneAIDemos
+      # steps: 50000
+      # steps: 750000
 
     # init_path: null
     keep_checkpoints: 15
     checkpoint_interval: 500000
     max_steps: 50000000
     time_horizon: 264
-    summary_freq: 100000
+    summary_freq: 500000
     threaded: true
     # self_play: null
