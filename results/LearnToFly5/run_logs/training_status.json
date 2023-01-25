@@ -1,0 +1,47 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 499951,
+                "file_path": "results\\LearnToFly5\\AirplaneAI\\AirplaneAI-499951.onnx",
+                "reward": -983.98497004807,
+                "creation_time": 1674565751.6761107,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly5\\AirplaneAI\\AirplaneAI-499951.pt"
+                ]
+            },
+            {
+                "steps": 999972,
+                "file_path": "results\\LearnToFly5\\AirplaneAI\\AirplaneAI-999972.onnx",
+                "reward": -988.7550061047077,
+                "creation_time": 1674570704.212508,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly5\\AirplaneAI\\AirplaneAI-999972.pt"
+                ]
+            },
+            {
+                "steps": 1000036,
+                "file_path": "results\\LearnToFly5\\AirplaneAI\\AirplaneAI-1000036.onnx",
+                "reward": -988.7550061047077,
+                "creation_time": 1674570704.3446646,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly5\\AirplaneAI\\AirplaneAI-1000036.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000036,
+            "file_path": "results\\LearnToFly5\\AirplaneAI.onnx",
+            "reward": -988.7550061047077,
+            "creation_time": 1674570704.3446646,
+            "auxillary_file_paths": [
+                "results\\LearnToFly5\\AirplaneAI\\AirplaneAI-1000036.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

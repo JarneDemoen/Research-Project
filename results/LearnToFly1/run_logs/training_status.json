@@ -1,0 +1,38 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 499996,
+                "file_path": "results\\LearnToFly1\\AirplaneAI\\AirplaneAI-499996.onnx",
+                "reward": -993.9749889612198,
+                "creation_time": 1674500560.921608,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly1\\AirplaneAI\\AirplaneAI-499996.pt"
+                ]
+            },
+            {
+                "steps": 500060,
+                "file_path": "results\\LearnToFly1\\AirplaneAI\\AirplaneAI-500060.onnx",
+                "reward": -993.9749889612198,
+                "creation_time": 1674500561.0315998,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly1\\AirplaneAI\\AirplaneAI-500060.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500060,
+            "file_path": "results\\LearnToFly1\\AirplaneAI.onnx",
+            "reward": -993.9749889612198,
+            "creation_time": 1674500561.0315998,
+            "auxillary_file_paths": [
+                "results\\LearnToFly1\\AirplaneAI\\AirplaneAI-500060.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

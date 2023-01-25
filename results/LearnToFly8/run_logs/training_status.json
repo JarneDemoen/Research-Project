@@ -1,0 +1,65 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 499942,
+                "file_path": "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-499942.onnx",
+                "reward": -984.4049988140663,
+                "creation_time": 1674673395.8665285,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-499942.pt"
+                ]
+            },
+            {
+                "steps": 999961,
+                "file_path": "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-999961.onnx",
+                "reward": null,
+                "creation_time": 1674674297.634895,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-999961.pt"
+                ]
+            },
+            {
+                "steps": 1499960,
+                "file_path": "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-1499960.onnx",
+                "reward": -978.3423908129334,
+                "creation_time": 1674675240.9393525,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-1499960.pt"
+                ]
+            },
+            {
+                "steps": 1999978,
+                "file_path": "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-1999978.onnx",
+                "reward": -985.5849676430225,
+                "creation_time": 1674676198.4735851,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-1999978.pt"
+                ]
+            },
+            {
+                "steps": 2000042,
+                "file_path": "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-2000042.onnx",
+                "reward": -985.5849676430225,
+                "creation_time": 1674676198.589508,
+                "auxillary_file_paths": [
+                    "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-2000042.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2000042,
+            "file_path": "results\\LearnToFly8\\AirplaneAI.onnx",
+            "reward": -985.5849676430225,
+            "creation_time": 1674676198.589508,
+            "auxillary_file_paths": [
+                "results\\LearnToFly8\\AirplaneAI\\AirplaneAI-2000042.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

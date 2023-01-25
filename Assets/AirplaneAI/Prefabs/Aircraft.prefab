@@ -537,6 +537,7 @@ MonoBehaviour:
   rewardText: {fileID: 0}
   episodeText: {fileID: 0}
   distanceText: {fileID: 0}
+  stepsText: {fileID: 0}
 --- !u!114 &468185431118648848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,11 +551,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SensorName: RayPerceptionSensor
-  m_DetectableTags: []
+  m_DetectableTags:
+  - Surface
+  - Ground
   m_RaysPerDirection: 6
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.5
-  m_RayLength: 70
+  m_RayLength: 320
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -576,7 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 6
+    VectorObservationSize: 11
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -585,8 +588,8 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 3
+  m_Model: {fileID: 5022602860645237092, guid: 7d436290e7b7f4848a490ed30e1c20af, type: 3}
+  m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: AirplaneAI
   TeamId: 0
@@ -614,15 +617,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468185431118648853}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2902496c0120472b90269f94a0aec7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: Demo
-  DemonstrationDirectory: AirplaneAIDemos
+  DemonstrationName: LearnToFly2401
+  DemonstrationDirectory: LearnToFlyDemos2401
 --- !u!1 &468185431239284392
 GameObject:
   m_ObjectHideFlags: 0

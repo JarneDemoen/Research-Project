@@ -14,7 +14,7 @@ behaviors:
       beta_schedule: linear
       epsilon_schedule: linear
     network_settings:
-      normalize: false
+      normalize: true
       hidden_units: 128
       num_layers: 2
       vis_encode_type: simple
@@ -23,8 +23,8 @@ behaviors:
       deterministic: false
     reward_signals:
       extrinsic:
-        gamma: 0.99
-        strength: 1.0
+        gamma: 0.95
+        strength: 0.99
         network_settings:
           normalize: false
           hidden_units: 128
@@ -34,19 +34,19 @@ behaviors:
           goal_conditioning_type: hyper
           deterministic: false
       gail:
-        strength: 0.5
-        demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AircraftPhysics\Example\AirplaneAIDemos
-        use_actions: false
+        strength: 0.3
+        demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\LearnToFlyDemos2401
+        use_actions: true
     behavioral_cloning:
-      strength: 0.5
-      demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AircraftPhysics\Example\AirplaneAIDemos
+      strength: 0.3
+      demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\LearnToFlyDemos2401
       # steps: 50000
-      steps: 750000
-    init_path: null
+      # steps: 750000
+    # init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 500000
+    max_steps: 2000000
     time_horizon: 64
     summary_freq: 50000
-    threaded: false
-    self_play: null
+    threaded: true
+    # self_play: null

@@ -1,0 +1,89 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1674559868",
+        "python_version": "3.8.15 (default, Nov 24 2022, 14:38:14) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\jarne\\miniconda3\\envs\\mlagents\\Scripts\\mlagents-learn Assets/AirplaneAI/Config/learnToFly.yaml --run-id=LearnToFly4 --quality-level=0 --force",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.13.1",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1674559886"
+    },
+    "total": 18.3230295,
+    "count": 1,
+    "self": 0.0077643999999992275,
+    "children": {
+        "run_training.setup": {
+            "total": 0.07045699999999999,
+            "count": 1,
+            "self": 0.07045699999999999
+        },
+        "TrainerController.start_learning": {
+            "total": 18.2448081,
+            "count": 1,
+            "self": 5.480000000446239e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 18.243422199999998,
+                    "count": 1,
+                    "self": 13.9111283,
+                    "children": {
+                        "demo_to_buffer": {
+                            "total": 4.332293899999998,
+                            "count": 1,
+                            "self": 9.669999999850631e-05,
+                            "children": {
+                                "load_demonstration": {
+                                    "total": 0.08306149999999946,
+                                    "count": 1,
+                                    "self": 0.0814660000000007,
+                                    "children": {
+                                        "read_file": {
+                                            "total": 0.0015954999999987507,
+                                            "count": 1,
+                                            "self": 0.0015954999999987507
+                                        }
+                                    }
+                                },
+                                "make_demo_buffer": {
+                                    "total": 4.2491357,
+                                    "count": 1,
+                                    "self": 0.6957979999999964,
+                                    "children": {
+                                        "steps_from_proto": {
+                                            "total": 3.5533377000000037,
+                                            "count": 42350,
+                                            "self": 2.2368268000001397,
+                                            "children": {
+                                                "_process_rank_one_or_two_observation": {
+                                                    "total": 1.316510899999864,
+                                                    "count": 169400,
+                                                    "self": 1.316510899999864
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "TrainerController._save_models": {
+                    "total": 0.001331099999998031,
+                    "count": 1,
+                    "self": 0.00017509999999631987,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.0011560000000017112,
+                            "count": 1,
+                            "self": 0.0011560000000017112
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -67,6 +67,7 @@ public class AirplaneController : Agent
     [SerializeField] TextMeshProUGUI? rewardText;
     [SerializeField] TextMeshProUGUI? episodeText;
     [SerializeField] TextMeshProUGUI? distanceText;
+    [SerializeField] TextMeshProUGUI? stepsText;
 
     public override void Initialize()
     {
@@ -155,6 +156,7 @@ public class AirplaneController : Agent
         flaps = false;
         invertedInfo = false;
         brakeInfo = false;
+        Debug.Log("Episode ended with " + GetCumulativeReward() + " reward");
         EndEpisode();
     }
 
@@ -191,13 +193,15 @@ public class AirplaneController : Agent
         if (other.gameObject == targetObject.gameObject && collected == false)
         {
             Debug.Log("Goal achieved!!!!");
-            AddReward(100f);
+            float discountedReward = 5000f - (float)steps;
+            AddReward(discountedReward);
             goalsAchieved++;
             // Debug.Log("Goal Achieved " + goalsAchieved);
             Destroy(targetObject);
             targetObject = target.InstantiateTarget();
             collected = true;
             StartCoroutine(SetCollected(false));
+            FinishEpisode();
         }
     }
 
@@ -205,13 +209,13 @@ public class AirplaneController : Agent
     {
         sensor.AddObservation(transform.position); // 3
         sensor.AddObservation(targetObject.transform.position); // 3
-        // sensor.AddObservation(transform.rotation); // 3
+        sensor.AddObservation(transform.rotation); // 3
 
-        // speed = rb.velocity.magnitude;
-        // sensor.AddObservation(speed); // 1
+        speed = rb.velocity.magnitude;
+        sensor.AddObservation(speed); // 1
 
-        // angularSpeed = rb.angularVelocity.magnitude;
-        // sensor.AddObservation(angularSpeed); // 1
+        angularSpeed = rb.angularVelocity.magnitude;
+        sensor.AddObservation(angularSpeed); // 1
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -283,13 +287,51 @@ public class AirplaneController : Agent
         discreteActions[3] = flapAction ? 1 : 0;
     }
 
+    private bool IsInArea()
+    {
+        return transform.position.x > -1200f && transform.position.x < 900f && transform.position.z > -300f && transform.position.z < 600f && transform.position.y > 100f && transform.position.y < 400f;
+    }
+
     public float CalculateReward()
     {
         float reward = 0f;
-        distanceToTarget = (float)Math.Sqrt(Math.Pow(transform.position.x - targetObject.transform.position.x, 2) + 
-        Math.Pow(transform.position.y  - targetObject.transform.position.y, 2) + Math.Pow(transform.position.z  - targetObject.transform.position.z, 2));
+        float height = transform.position.y;
+        distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
+        // The first 500 steps the plane has to go up
+        
+        reward += 0.005f;
 
-        reward = 10f/(distanceToTarget + 0.001f);
+        if (distanceToTarget < previousDistanceToTarget && IsInArea())
+        {
+            reward += 0.01f;
+
+            if (distanceToTarget < 700f)
+            {
+                reward += 100f/(distanceToTarget + 0.001f);
+            }
+        }
+
+
+        if (transform.rotation.x > 0.5f || transform.rotation.x < -0.5f)
+        {
+            // Debug.Log("Rotation X bad");
+            reward -= 0.01f;
+        }
+        
+        // check if the plane doesnt roll upside down
+        float tran = Vector3.Angle(transform.up, Vector3.up);
+        if (Math.Abs(tran) <= 110f)
+        {
+            reward += 0.005f;
+            // Debug.Log("Good angle");
+        }
+        else
+        {
+            reward -= 0.01f;
+            // Debug.Log("Bad rotation");
+        }
+
+        previousDistanceToTarget = distanceToTarget;
 
         return reward;
     }
@@ -298,11 +340,18 @@ public class AirplaneController : Agent
     {
         propeller.speed = thrustPercent * 1500f;
 
-        if (rewardText != null && episodeText != null && distanceText != null)
+        if (rewardText != null && episodeText != null && distanceText != null && stepsText != null)
         {
             rewardText.text = "Reward: " + GetCumulativeReward();
             episodeText.text = "Episode: " + episode;
             distanceText.text = "Distance: " + distanceToTarget;
+            stepsText.text = "Steps: " + steps;
+        }
+
+        if (steps > 5000)
+        {
+            AddReward(-500f);
+            FinishEpisode();
         }
 
     }
