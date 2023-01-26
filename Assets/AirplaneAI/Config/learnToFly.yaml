@@ -34,18 +34,18 @@ behaviors:
           goal_conditioning_type: hyper
           deterministic: false
       gail:
-        strength: 0.3
-        demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\LearnToFlyDemos2401
+        strength: 0.5
+        demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\FlyStraight
         use_actions: true
     behavioral_cloning:
-      strength: 0.3
-      demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\LearnToFlyDemos2401
+      strength: 0.5
+      demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\FlyStraight
       # steps: 50000
       # steps: 750000
     # init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 2000000
+    max_steps: 10000000
     time_horizon: 64
     summary_freq: 50000
     threaded: true

@@ -11,10 +11,11 @@ public class Target : MonoBehaviour
 
     public GameObject InstantiateTarget()
     {
-        float randomX = Random.Range(-1200,900);
-        float randomY = Random.Range(100, 400);
-        float randomZ = Random.Range(-300, 600);
+        float randomX = Random.Range(-1500,1200);
+        float randomY = Random.Range(100,500);
+        float randomZ = Random.Range(-900, 1400);
         GameObject target = Instantiate(original, new Vector3(randomX, randomY, randomZ), Quaternion.Euler(0, 0, 0));
+
         // if the object collides with the tag "Surface", change the position of the target again
         if (collideswithSurface == true)
         {

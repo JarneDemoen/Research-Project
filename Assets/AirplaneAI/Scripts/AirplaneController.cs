@@ -34,6 +34,8 @@ public class AirplaneController : Agent
     private int goalsAchieved = 0;
     float distanceToTarget;
     float previousDistanceToTarget = 0;
+    float previousHeight = 0;
+    float height = 0;
 
     float thrustPercent;
     bool brake;
@@ -156,6 +158,8 @@ public class AirplaneController : Agent
         flaps = false;
         invertedInfo = false;
         brakeInfo = false;
+        height = 0;
+        previousHeight = 0;
         Debug.Log("Episode ended with " + GetCumulativeReward() + " reward");
         EndEpisode();
     }
@@ -193,8 +197,7 @@ public class AirplaneController : Agent
         if (other.gameObject == targetObject.gameObject && collected == false)
         {
             Debug.Log("Goal achieved!!!!");
-            float discountedReward = 5000f - (float)steps;
-            AddReward(discountedReward);
+            AddReward(500f);
             goalsAchieved++;
             // Debug.Log("Goal Achieved " + goalsAchieved);
             Destroy(targetObject);
@@ -287,50 +290,87 @@ public class AirplaneController : Agent
         discreteActions[3] = flapAction ? 1 : 0;
     }
 
-    private bool IsInArea()
-    {
-        return transform.position.x > -1200f && transform.position.x < 900f && transform.position.z > -300f && transform.position.z < 600f && transform.position.y > 100f && transform.position.y < 400f;
-    }
+    // private bool IsInArea()
+    // {
+    //     return transform.position.x > -1200f && transform.position.x < 900f && transform.position.z > -300f && transform.position.z < 600f && transform.position.y > 100f && transform.position.y < 400f;
+    // }
 
+    // public float CalculateReward()
+    // {
+    //     float reward = 0f;
+    //     distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
+    //     // The first 500 steps the plane has to go up
+        
+    //     reward += 0.005f;
+
+    //     if (distanceToTarget < previousDistanceToTarget && IsInArea())
+    //     {
+    //         reward += 0.01f;
+
+    //         if (distanceToTarget < 700f)
+    //         {
+    //             reward += 100f/(distanceToTarget + 0.001f);
+    //         }
+    //     }
+
+
+    //     if (transform.rotation.x > 0.5f || transform.rotation.x < -0.5f)
+    //     {
+    //         // Debug.Log("Rotation X bad");
+    //         reward -= 0.01f;
+    //     }
+        
+    //     // check if the plane doesnt roll upside down
+    //     float tran = Vector3.Angle(transform.up, Vector3.up);
+    //     if (Math.Abs(tran) <= 110f)
+    //     {
+    //         reward += 0.005f;
+    //         // Debug.Log("Good angle");
+    //     }
+    //     else
+    //     {
+    //         reward -= 0.01f;
+    //         // Debug.Log("Bad rotation");
+    //     }
+
+    //     previousDistanceToTarget = distanceToTarget;
+
+    //     return reward;
+    // }
     public float CalculateReward()
     {
         float reward = 0f;
-        float height = transform.position.y;
         distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
-        // The first 500 steps the plane has to go up
+
+        height = transform.position.y;
+
+        if (height < previousHeight - 1f)
+        {
+            reward -= 0.1f;
+            // Debug.Log("Bad height");
+        }
+
+        float tran = Vector3.Angle(transform.up, Vector3.up);
+        
+        if (Math.Abs(tran) >= 110f)
+        {
+            reward -= 0.1f;
+            // Debug.Log("Bad tran");
+        }
         
         reward += 0.005f;
 
-        if (distanceToTarget < previousDistanceToTarget && IsInArea())
-        {
-            reward += 0.01f;
-
-            if (distanceToTarget < 700f)
+        if (distanceToTarget < previousDistanceToTarget )
+        { 
+            if(distanceToTarget < 800f)
             {
                 reward += 100f/(distanceToTarget + 0.001f);
             }
+            
+            reward += 0.035f;
         }
 
-
-        if (transform.rotation.x > 0.5f || transform.rotation.x < -0.5f)
-        {
-            // Debug.Log("Rotation X bad");
-            reward -= 0.01f;
-        }
-        
-        // check if the plane doesnt roll upside down
-        float tran = Vector3.Angle(transform.up, Vector3.up);
-        if (Math.Abs(tran) <= 110f)
-        {
-            reward += 0.005f;
-            // Debug.Log("Good angle");
-        }
-        else
-        {
-            reward -= 0.01f;
-            // Debug.Log("Bad rotation");
-        }
-
+        previousHeight = height;
         previousDistanceToTarget = distanceToTarget;
 
         return reward;
