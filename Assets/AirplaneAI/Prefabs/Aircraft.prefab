@@ -527,6 +527,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  isWatching: 0
   rollControlSensitivity: 0.15
   pitchControlSensitivity: 0.2
   yawControlSensitivity: 0.6
@@ -579,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 11
+    VectorObservationSize: 9
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -588,7 +589,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 52170421ccb2f8d43a6e66c4a7795c12, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: b23a41695ba019a4c91bb6745df63d60, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: AirplaneAI
@@ -624,8 +625,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: FlyStraight
-  DemonstrationDirectory: FlyStraight
+  DemonstrationName: NoObstacle
+  DemonstrationDirectory: NoObstacle
 --- !u!1 &468185431239284392
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ using System;
 public class AirplaneController : Agent
 {
     [SerializeField]
+    bool isWatching = false;
+    [SerializeField]
     float rollControlSensitivity = 0.15f;
     [SerializeField]
     float pitchControlSensitivity = 0.2f;
@@ -109,6 +111,11 @@ public class AirplaneController : Agent
         }
 
         targetObject = target.InstantiateTarget();
+        if (isWatching)
+        {
+            // change color to blue
+            targetObject.GetComponent<Renderer>().material.color = Color.blue;
+        }
         SetThrust(1500f);
     }
 
@@ -172,7 +179,7 @@ public class AirplaneController : Agent
             {
                 return;
             }
-            AddReward(-1000f);
+            AddReward((-1000f+(steps/10)));
             // Debug.Log("End Episode " + episode);
             // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
             FinishEpisode();
@@ -184,7 +191,7 @@ public class AirplaneController : Agent
             // if the angle of the plane is more than 30 degrees, it is considered a crash
             if (Vector3.Angle(transform.up, Vector3.up) > 30)
             {
-                AddReward(-1000f);
+                AddReward((-1000f+(steps/10)));
                 // Debug.Log("End Episode " + episode);
                 // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
                 FinishEpisode();
@@ -197,7 +204,7 @@ public class AirplaneController : Agent
         if (other.gameObject == targetObject.gameObject && collected == false)
         {
             Debug.Log("Goal achieved!!!!");
-            AddReward(500f);
+            AddReward(3000f);
             goalsAchieved++;
             // Debug.Log("Goal Achieved " + goalsAchieved);
             Destroy(targetObject);
@@ -210,16 +217,32 @@ public class AirplaneController : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.position); // 3
-        sensor.AddObservation(targetObject.transform.position); // 3
-        sensor.AddObservation(transform.rotation); // 3
+        // sensor.AddObservation(transform.position); // 3
+        // sensor.AddObservation(targetObject.transform.position); // 3
+        // sensor.AddObservation(transform.rotation); // 3
 
-        speed = rb.velocity.magnitude;
-        sensor.AddObservation(speed); // 1
+        // speed = rb.velocity.magnitude;
+        // sensor.AddObservation(speed); // 1
 
-        angularSpeed = rb.angularVelocity.magnitude;
-        sensor.AddObservation(angularSpeed); // 1
+        // angularSpeed = rb.angularVelocity.magnitude;
+        // sensor.AddObservation(angularSpeed); // 1
+
+        //Observe aircraft velocity
+        sensor.AddObservation(transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity));
+        //Where is the next checkpoint
+        sensor.AddObservation(VectorToNextCheckpoint());
+        //Orientation of the next checkpoint
+        sensor.AddObservation(transform.InverseTransformDirection(targetObject.transform.forward));
+        //Total Observation = 3+3+3 = 9
     }
+
+    private Vector3 VectorToNextCheckpoint()
+    {
+        Vector3 nextCheckpointDir = targetObject.transform.position - transform.position;
+        Vector3 localCheckpointDir = transform.InverseTransformDirection(nextCheckpointDir);
+        return localCheckpointDir;
+    }
+
 
     public override void OnActionReceived(ActionBuffers actions)
     {
@@ -337,40 +360,79 @@ public class AirplaneController : Agent
 
     //     return reward;
     // }
-    public float CalculateReward()
+    // public float CalculateReward()
+    // {
+    //     float reward = 0f;
+    //     distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
+
+    //     height = transform.position.y;
+
+    //     if (height < previousHeight - 1f)
+    //     {
+    //         reward -= 0.1f;
+    //         // Debug.Log("Bad height");
+    //     }
+
+    //     float tran = Vector3.Angle(transform.up, Vector3.up);
+        
+    //     if (Math.Abs(tran) >= 110f)
+    //     {
+    //         reward -= 0.1f;
+    //         // Debug.Log("Bad tran");
+    //     }
+        
+    //     reward += 0.005f;
+
+    //     if (distanceToTarget < previousDistanceToTarget )
+    //     { 
+    //         if(distanceToTarget < 800f)
+    //         {
+    //             reward += 100f/(distanceToTarget + 0.001f);
+    //         }
+            
+    //         reward += 0.035f;
+    //     }
+
+    //     previousHeight = height;
+    //     previousDistanceToTarget = distanceToTarget;
+
+    //     return reward;
+    // }
+
+    private bool IsFlyingSafe()
+    {
+        height = transform.position.y;
+        float tran = Vector3.Angle(transform.up, Vector3.up);
+
+        if (height < previousHeight - 1f)
+        {
+            return false;
+        }
+        
+        if (Math.Abs(tran) >= 110f)
+        {
+            return false;
+        }
+
+        previousHeight = height;
+
+        return true;
+    }
+
+    private float CalculateReward()
     {
         float reward = 0f;
         distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
 
-        height = transform.position.y;
-
-        if (height < previousHeight - 1f)
+        if(distanceToTarget < previousDistanceToTarget )
         {
-            reward -= 0.1f;
-            // Debug.Log("Bad height");
+            reward += 300f/(distanceToTarget + 0.001f);
         }
-
-        float tran = Vector3.Angle(transform.up, Vector3.up);
-        
-        if (Math.Abs(tran) >= 110f)
+        else
         {
-            reward -= 0.1f;
-            // Debug.Log("Bad tran");
+            reward -= distanceToTarget/10000f;
         }
         
-        reward += 0.005f;
-
-        if (distanceToTarget < previousDistanceToTarget )
-        { 
-            if(distanceToTarget < 800f)
-            {
-                reward += 100f/(distanceToTarget + 0.001f);
-            }
-            
-            reward += 0.035f;
-        }
-
-        previousHeight = height;
         previousDistanceToTarget = distanceToTarget;
 
         return reward;

@@ -1,0 +1,65 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 8499951,
+                "file_path": "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-8499951.onnx",
+                "reward": -790.704432874918,
+                "creation_time": 1674774652.7980955,
+                "auxillary_file_paths": [
+                    "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-8499951.pt"
+                ]
+            },
+            {
+                "steps": 8999996,
+                "file_path": "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-8999996.onnx",
+                "reward": -995.2731583118439,
+                "creation_time": 1674775504.2617502,
+                "auxillary_file_paths": [
+                    "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-8999996.pt"
+                ]
+            },
+            {
+                "steps": 9499988,
+                "file_path": "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-9499988.onnx",
+                "reward": null,
+                "creation_time": 1674776334.2764351,
+                "auxillary_file_paths": [
+                    "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-9499988.pt"
+                ]
+            },
+            {
+                "steps": 9999975,
+                "file_path": "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-9999975.onnx",
+                "reward": -715.4693839550018,
+                "creation_time": 1674777151.1195648,
+                "auxillary_file_paths": [
+                    "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-9999975.pt"
+                ]
+            },
+            {
+                "steps": 10000039,
+                "file_path": "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-10000039.onnx",
+                "reward": -715.4693839550018,
+                "creation_time": 1674777151.2322893,
+                "auxillary_file_paths": [
+                    "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-10000039.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000039,
+            "file_path": "results\\NoObstacleImitation\\AirplaneAI.onnx",
+            "reward": -715.4693839550018,
+            "creation_time": 1674777151.2322893,
+            "auxillary_file_paths": [
+                "results\\NoObstacleImitation\\AirplaneAI\\AirplaneAI-10000039.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 8499981,
+                "file_path": "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-8499981.onnx",
+                "reward": null,
+                "creation_time": 1674756925.467297,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-8499981.pt"
+                ]
+            },
+            {
+                "steps": 8999951,
+                "file_path": "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-8999951.onnx",
+                "reward": -475.73998069763184,
+                "creation_time": 1674757560.517014,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-8999951.pt"
+                ]
+            },
+            {
+                "steps": 9499998,
+                "file_path": "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-9499998.onnx",
+                "reward": -551.5059143602848,
+                "creation_time": 1674758263.4975343,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-9499998.pt"
+                ]
+            },
+            {
+                "steps": 9999957,
+                "file_path": "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-9999957.onnx",
+                "reward": -759.5780565738678,
+                "creation_time": 1674758909.6627085,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-9999957.pt"
+                ]
+            },
+            {
+                "steps": 10000103,
+                "file_path": "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-10000103.onnx",
+                "reward": -775.1714086532593,
+                "creation_time": 1674758909.7881825,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-10000103.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000103,
+            "file_path": "results\\NoObstaclesTest3\\AirplaneAI.onnx",
+            "reward": -775.1714086532593,
+            "creation_time": 1674758909.7881825,
+            "auxillary_file_paths": [
+                "results\\NoObstaclesTest3\\AirplaneAI\\AirplaneAI-10000103.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

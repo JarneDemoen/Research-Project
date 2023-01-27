@@ -1,0 +1,56 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 499944,
+                "file_path": "results\\NoObstacles\\AirplaneAI\\AirplaneAI-499944.onnx",
+                "reward": -1376.4223775863647,
+                "creation_time": 1674739632.0470314,
+                "auxillary_file_paths": [
+                    "results\\NoObstacles\\AirplaneAI\\AirplaneAI-499944.pt"
+                ]
+            },
+            {
+                "steps": 999957,
+                "file_path": "results\\NoObstacles\\AirplaneAI\\AirplaneAI-999957.onnx",
+                "reward": -644.5980997085571,
+                "creation_time": 1674740560.8724954,
+                "auxillary_file_paths": [
+                    "results\\NoObstacles\\AirplaneAI\\AirplaneAI-999957.pt"
+                ]
+            },
+            {
+                "steps": 1499972,
+                "file_path": "results\\NoObstacles\\AirplaneAI\\AirplaneAI-1499972.onnx",
+                "reward": -825.4306694616874,
+                "creation_time": 1674741718.4624577,
+                "auxillary_file_paths": [
+                    "results\\NoObstacles\\AirplaneAI\\AirplaneAI-1499972.pt"
+                ]
+            },
+            {
+                "steps": 1664505,
+                "file_path": "results\\NoObstacles\\AirplaneAI\\AirplaneAI-1664505.onnx",
+                "reward": -1004.3693651358286,
+                "creation_time": 1674742074.2252922,
+                "auxillary_file_paths": [
+                    "results\\NoObstacles\\AirplaneAI\\AirplaneAI-1664505.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1664505,
+            "file_path": "results\\NoObstacles\\AirplaneAI.onnx",
+            "reward": -1004.3693651358286,
+            "creation_time": 1674742074.2252922,
+            "auxillary_file_paths": [
+                "results\\NoObstacles\\AirplaneAI\\AirplaneAI-1664505.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

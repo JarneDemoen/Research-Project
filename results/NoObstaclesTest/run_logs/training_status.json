@@ -1,0 +1,56 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 499983,
+                "file_path": "results\\NoObstaclesTest\\AirplaneAI\\AirplaneAI-499983.onnx",
+                "reward": -861.6919673979282,
+                "creation_time": 1674743586.0504985,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest\\AirplaneAI\\AirplaneAI-499983.pt"
+                ]
+            },
+            {
+                "steps": 999995,
+                "file_path": "results\\NoObstaclesTest\\AirplaneAI\\AirplaneAI-999995.onnx",
+                "reward": null,
+                "creation_time": 1674744206.767404,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest\\AirplaneAI\\AirplaneAI-999995.pt"
+                ]
+            },
+            {
+                "steps": 1499992,
+                "file_path": "results\\NoObstaclesTest\\AirplaneAI\\AirplaneAI-1499992.onnx",
+                "reward": -268.16560873389244,
+                "creation_time": 1674744806.8652208,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest\\AirplaneAI\\AirplaneAI-1499992.pt"
+                ]
+            },
+            {
+                "steps": 1660054,
+                "file_path": "results\\NoObstaclesTest\\AirplaneAI\\AirplaneAI-1660054.onnx",
+                "reward": -280.46290159225464,
+                "creation_time": 1674745066.9245398,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest\\AirplaneAI\\AirplaneAI-1660054.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1660054,
+            "file_path": "results\\NoObstaclesTest\\AirplaneAI.onnx",
+            "reward": -280.46290159225464,
+            "creation_time": 1674745066.9245398,
+            "auxillary_file_paths": [
+                "results\\NoObstaclesTest\\AirplaneAI\\AirplaneAI-1660054.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

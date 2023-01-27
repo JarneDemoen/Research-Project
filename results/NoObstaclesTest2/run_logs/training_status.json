@@ -1,0 +1,38 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 499946,
+                "file_path": "results\\NoObstaclesTest2\\AirplaneAI\\AirplaneAI-499946.onnx",
+                "reward": -1167.7432790249586,
+                "creation_time": 1674745738.7003171,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest2\\AirplaneAI\\AirplaneAI-499946.pt"
+                ]
+            },
+            {
+                "steps": 894653,
+                "file_path": "results\\NoObstaclesTest2\\AirplaneAI\\AirplaneAI-894653.onnx",
+                "reward": -1243.7339825232823,
+                "creation_time": 1674746282.9598053,
+                "auxillary_file_paths": [
+                    "results\\NoObstaclesTest2\\AirplaneAI\\AirplaneAI-894653.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 894653,
+            "file_path": "results\\NoObstaclesTest2\\AirplaneAI.onnx",
+            "reward": -1243.7339825232823,
+            "creation_time": 1674746282.9598053,
+            "auxillary_file_paths": [
+                "results\\NoObstaclesTest2\\AirplaneAI\\AirplaneAI-894653.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}
