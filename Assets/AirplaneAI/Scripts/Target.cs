@@ -12,7 +12,7 @@ public class Target : MonoBehaviour
     public GameObject InstantiateTarget()
     {
         float randomX = Random.Range(-1500,1200);
-        float randomY = Random.Range(200,700);
+        float randomY = Random.Range(300,700);
         float randomZ = Random.Range(-900, 1400);
         GameObject target = Instantiate(original, new Vector3(randomX, randomY, randomZ), Quaternion.Euler(0, 0, 0));
 

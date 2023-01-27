@@ -419,12 +419,17 @@ public class AirplaneController : Agent
         return true;
     }
 
+    private bool IsInArea()
+    {
+        return transform.position.x > -1500f && transform.position.x < 1200f && transform.position.z > -900f && transform.position.z < 1400f && transform.position.y > 200f && transform.position.y < 700f;
+    }
+
     private float CalculateReward()
     {
         float reward = 0f;
         distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
 
-        if(distanceToTarget < previousDistanceToTarget )
+        if(distanceToTarget < previousDistanceToTarget)
         {
             reward += 300f/(distanceToTarget + 0.001f);
         }
