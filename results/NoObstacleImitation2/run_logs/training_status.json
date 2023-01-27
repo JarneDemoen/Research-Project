@@ -1,0 +1,56 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 499977,
+                "file_path": "results\\NoObstacleImitation2\\AirplaneAI\\AirplaneAI-499977.onnx",
+                "reward": -441.4817727804184,
+                "creation_time": 1674805574.7410097,
+                "auxillary_file_paths": [
+                    "results\\NoObstacleImitation2\\AirplaneAI\\AirplaneAI-499977.pt"
+                ]
+            },
+            {
+                "steps": 999960,
+                "file_path": "results\\NoObstacleImitation2\\AirplaneAI\\AirplaneAI-999960.onnx",
+                "reward": -388.0035810470581,
+                "creation_time": 1674806813.8424456,
+                "auxillary_file_paths": [
+                    "results\\NoObstacleImitation2\\AirplaneAI\\AirplaneAI-999960.pt"
+                ]
+            },
+            {
+                "steps": 1499948,
+                "file_path": "results\\NoObstacleImitation2\\AirplaneAI\\AirplaneAI-1499948.onnx",
+                "reward": -807.8266041179498,
+                "creation_time": 1674807685.4089024,
+                "auxillary_file_paths": [
+                    "results\\NoObstacleImitation2\\AirplaneAI\\AirplaneAI-1499948.pt"
+                ]
+            },
+            {
+                "steps": 1573176,
+                "file_path": "results\\NoObstacleImitation2\\AirplaneAI\\AirplaneAI-1573176.onnx",
+                "reward": -820.66544008255,
+                "creation_time": 1674807882.2958844,
+                "auxillary_file_paths": [
+                    "results\\NoObstacleImitation2\\AirplaneAI\\AirplaneAI-1573176.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1573176,
+            "file_path": "results\\NoObstacleImitation2\\AirplaneAI.onnx",
+            "reward": -820.66544008255,
+            "creation_time": 1674807882.2958844,
+            "auxillary_file_paths": [
+                "results\\NoObstacleImitation2\\AirplaneAI\\AirplaneAI-1573176.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}
