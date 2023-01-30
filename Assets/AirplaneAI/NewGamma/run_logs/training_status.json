@@ -1,0 +1,65 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 13499951,
+                "file_path": "results\\NewGamma\\AirplaneAI\\AirplaneAI-13499951.onnx",
+                "reward": null,
+                "creation_time": 1675007279.8694656,
+                "auxillary_file_paths": [
+                    "results\\NewGamma\\AirplaneAI\\AirplaneAI-13499951.pt"
+                ]
+            },
+            {
+                "steps": 13999951,
+                "file_path": "results\\NewGamma\\AirplaneAI\\AirplaneAI-13999951.onnx",
+                "reward": 1154.951379752159,
+                "creation_time": 1675008209.9845715,
+                "auxillary_file_paths": [
+                    "results\\NewGamma\\AirplaneAI\\AirplaneAI-13999951.pt"
+                ]
+            },
+            {
+                "steps": 14499968,
+                "file_path": "results\\NewGamma\\AirplaneAI\\AirplaneAI-14499968.onnx",
+                "reward": 2627.949908812841,
+                "creation_time": 1675009031.4322503,
+                "auxillary_file_paths": [
+                    "results\\NewGamma\\AirplaneAI\\AirplaneAI-14499968.pt"
+                ]
+            },
+            {
+                "steps": 14999967,
+                "file_path": "results\\NewGamma\\AirplaneAI\\AirplaneAI-14999967.onnx",
+                "reward": null,
+                "creation_time": 1675010000.7945156,
+                "auxillary_file_paths": [
+                    "results\\NewGamma\\AirplaneAI\\AirplaneAI-14999967.pt"
+                ]
+            },
+            {
+                "steps": 15181874,
+                "file_path": "results\\NewGamma\\AirplaneAI\\AirplaneAI-15181874.onnx",
+                "reward": -293.5750049650669,
+                "creation_time": 1675010366.0896862,
+                "auxillary_file_paths": [
+                    "results\\NewGamma\\AirplaneAI\\AirplaneAI-15181874.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 15181874,
+            "file_path": "results\\NewGamma\\AirplaneAI.onnx",
+            "reward": -293.5750049650669,
+            "creation_time": 1675010366.0896862,
+            "auxillary_file_paths": [
+                "results\\NewGamma\\AirplaneAI\\AirplaneAI-15181874.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}

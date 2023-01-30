@@ -23,7 +23,7 @@ behaviors:
       deterministic: false
     reward_signals:
       extrinsic:
-        gamma: 0.95
+        gamma: 0.98
         strength: 0.99
         network_settings:
           normalize: false
@@ -34,18 +34,18 @@ behaviors:
           goal_conditioning_type: hyper
           deterministic: false
       gail:
-        strength: 0.5
+        strength: 0.2
         demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\NoObstacle
         use_actions: true
     behavioral_cloning:
-      strength: 0.5
+      strength: 0.2
       demo_path: C:\Users\jarne\Documents\UnityProjects\Research-Project\Assets\AirplaneAI\NoObstacle
       # steps: 50000
       # steps: 750000
     # init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 20000000
+    max_steps: 50000000
     time_horizon: 64
     summary_freq: 50000
     threaded: true

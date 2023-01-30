@@ -589,9 +589,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: a52ce5676405f384698397b71da1e9f2, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 36196b25711ece441a0e593b74e5ed81, type: 3}
   m_InferenceDevice: 1
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: AirplaneAI
   TeamId: 0
   m_UseChildSensors: 1
@@ -625,8 +625,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: NoObstacle
-  DemonstrationDirectory: NoObstacle
+  DemonstrationName: DemoName
+  DemonstrationDirectory: DemoDirectory
 --- !u!1 &468185431239284392
 GameObject:
   m_ObjectHideFlags: 0

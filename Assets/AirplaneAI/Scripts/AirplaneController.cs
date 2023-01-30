@@ -26,7 +26,6 @@ public class AirplaneController : Agent
     float flapControlSensitivity = 0.1745f;
 
     [SerializeField]
-    // GameObject target;
 
     float pitch;
     float yaw;
@@ -66,12 +65,12 @@ public class AirplaneController : Agent
 
     int episode = 0;
 
-    #nullable enable
     [Header("UI")]
     [SerializeField] TextMeshProUGUI? rewardText;
     [SerializeField] TextMeshProUGUI? episodeText;
     [SerializeField] TextMeshProUGUI? distanceText;
     [SerializeField] TextMeshProUGUI? stepsText;
+    [SerializeField] TextMeshProUGUI? goalsText;
 
     public override void Initialize()
     {
@@ -84,7 +83,6 @@ public class AirplaneController : Agent
     public override void OnEpisodeBegin()
     {
         episode++;
-        // Debug.Log("Episode Begin " + episode);
         roll = 0;
         pitch = 0;
         yaw = 0;
@@ -95,7 +93,6 @@ public class AirplaneController : Agent
         invertedInfo = false;
         brakeInfo = false;
         steps = 0;
-        goalsAchieved = 0;
 
         if (thrustControlSensitivity < 0)
         {
@@ -180,8 +177,6 @@ public class AirplaneController : Agent
                 return;
             }
             AddReward((-1000f+(steps/10)));
-            // Debug.Log("End Episode " + episode);
-            // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
             FinishEpisode();
         }
 
@@ -192,41 +187,33 @@ public class AirplaneController : Agent
             if (Vector3.Angle(transform.up, Vector3.up) > 30)
             {
                 AddReward((-1000f+(steps/10)));
-                // Debug.Log("End Episode " + episode);
-                // Debug.Log("Reward of " + GetCumulativeReward() + " for episode " + episode);
                 FinishEpisode();
             }
         }
+    }
+
+    private void GoalAchieved()
+    {
+        Debug.Log("Goal achieved!!!!");
+        AddReward(3000f);
+        goalsAchieved++;
+        Destroy(targetObject);
+        targetObject = target.InstantiateTarget();
+        collected = true;
+        StartCoroutine(SetCollected(false));
+        // FinishEpisode();
     }
 
     private void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject == targetObject.gameObject && collected == false)
         {
-            Debug.Log("Goal achieved!!!!");
-            AddReward(3000f);
-            goalsAchieved++;
-            // Debug.Log("Goal Achieved " + goalsAchieved);
-            Destroy(targetObject);
-            targetObject = target.InstantiateTarget();
-            collected = true;
-            StartCoroutine(SetCollected(false));
-            FinishEpisode();
+            GoalAchieved();
         }
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        // sensor.AddObservation(transform.position); // 3
-        // sensor.AddObservation(targetObject.transform.position); // 3
-        // sensor.AddObservation(transform.rotation); // 3
-
-        // speed = rb.velocity.magnitude;
-        // sensor.AddObservation(speed); // 1
-
-        // angularSpeed = rb.angularVelocity.magnitude;
-        // sensor.AddObservation(angularSpeed); // 1
-
         //Observe aircraft velocity
         sensor.AddObservation(transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity));
         //Where is the next checkpoint
@@ -313,117 +300,6 @@ public class AirplaneController : Agent
         discreteActions[3] = flapAction ? 1 : 0;
     }
 
-    // private bool IsInArea()
-    // {
-    //     return transform.position.x > -1200f && transform.position.x < 900f && transform.position.z > -300f && transform.position.z < 600f && transform.position.y > 100f && transform.position.y < 400f;
-    // }
-
-    // public float CalculateReward()
-    // {
-    //     float reward = 0f;
-    //     distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
-    //     // The first 500 steps the plane has to go up
-        
-    //     reward += 0.005f;
-
-    //     if (distanceToTarget < previousDistanceToTarget && IsInArea())
-    //     {
-    //         reward += 0.01f;
-
-    //         if (distanceToTarget < 700f)
-    //         {
-    //             reward += 100f/(distanceToTarget + 0.001f);
-    //         }
-    //     }
-
-
-    //     if (transform.rotation.x > 0.5f || transform.rotation.x < -0.5f)
-    //     {
-    //         // Debug.Log("Rotation X bad");
-    //         reward -= 0.01f;
-    //     }
-        
-    //     // check if the plane doesnt roll upside down
-    //     float tran = Vector3.Angle(transform.up, Vector3.up);
-    //     if (Math.Abs(tran) <= 110f)
-    //     {
-    //         reward += 0.005f;
-    //         // Debug.Log("Good angle");
-    //     }
-    //     else
-    //     {
-    //         reward -= 0.01f;
-    //         // Debug.Log("Bad rotation");
-    //     }
-
-    //     previousDistanceToTarget = distanceToTarget;
-
-    //     return reward;
-    // }
-    // public float CalculateReward()
-    // {
-    //     float reward = 0f;
-    //     distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
-
-    //     height = transform.position.y;
-
-    //     if (height < previousHeight - 1f)
-    //     {
-    //         reward -= 0.1f;
-    //         // Debug.Log("Bad height");
-    //     }
-
-    //     float tran = Vector3.Angle(transform.up, Vector3.up);
-        
-    //     if (Math.Abs(tran) >= 110f)
-    //     {
-    //         reward -= 0.1f;
-    //         // Debug.Log("Bad tran");
-    //     }
-        
-    //     reward += 0.005f;
-
-    //     if (distanceToTarget < previousDistanceToTarget )
-    //     { 
-    //         if(distanceToTarget < 800f)
-    //         {
-    //             reward += 100f/(distanceToTarget + 0.001f);
-    //         }
-            
-    //         reward += 0.035f;
-    //     }
-
-    //     previousHeight = height;
-    //     previousDistanceToTarget = distanceToTarget;
-
-    //     return reward;
-    // }
-
-    private bool IsFlyingSafe()
-    {
-        height = transform.position.y;
-        float tran = Vector3.Angle(transform.up, Vector3.up);
-
-        if (height < previousHeight - 1f)
-        {
-            return false;
-        }
-        
-        if (Math.Abs(tran) >= 110f)
-        {
-            return false;
-        }
-
-        previousHeight = height;
-
-        return true;
-    }
-
-    private bool IsInArea()
-    {
-        return transform.position.x > -1500f && transform.position.x < 1200f && transform.position.z > -900f && transform.position.z < 1400f && transform.position.y > 200f && transform.position.y < 700f;
-    }
-
     private float CalculateReward()
     {
         float reward = 0f;
@@ -432,6 +308,10 @@ public class AirplaneController : Agent
         if(distanceToTarget < previousDistanceToTarget)
         {
             reward += 300f/(distanceToTarget + 0.001f);
+        }
+        else if (distanceToTarget <= 250)
+        {
+            GoalAchieved();
         }
         else
         {
@@ -447,19 +327,20 @@ public class AirplaneController : Agent
     {
         propeller.speed = thrustPercent * 1500f;
 
-        if (rewardText != null && episodeText != null && distanceText != null && stepsText != null)
+        if (rewardText != null && episodeText != null && distanceText != null && stepsText != null && goalsText != null)
         {
             rewardText.text = "Reward: " + GetCumulativeReward();
             episodeText.text = "Episode: " + episode;
-            distanceText.text = "Distance: " + distanceToTarget;
+            distanceText.text = "Distance to goal: " + distanceToTarget;
             stepsText.text = "Steps: " + steps;
+            goalsText.text = "Goals achieved: " + goalsAchieved;
         }
 
-        if (steps > 5000)
-        {
-            AddReward(-500f);
-            FinishEpisode();
-        }
+        // if (steps > 5000)
+        // {
+        //     AddReward(-500f);
+        //     FinishEpisode();
+        // }
 
     }
 

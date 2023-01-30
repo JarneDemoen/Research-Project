@@ -1,0 +1,65 @@
+{
+    "AirplaneAI": {
+        "checkpoints": [
+            {
+                "steps": 18499977,
+                "file_path": "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-18499977.onnx",
+                "reward": 574.4575713475546,
+                "creation_time": 1674942447.6364846,
+                "auxillary_file_paths": [
+                    "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-18499977.pt"
+                ]
+            },
+            {
+                "steps": 18999947,
+                "file_path": "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-18999947.onnx",
+                "reward": null,
+                "creation_time": 1674943349.9545872,
+                "auxillary_file_paths": [
+                    "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-18999947.pt"
+                ]
+            },
+            {
+                "steps": 19499961,
+                "file_path": "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-19499961.onnx",
+                "reward": -306.5003367151533,
+                "creation_time": 1674944247.281303,
+                "auxillary_file_paths": [
+                    "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-19499961.pt"
+                ]
+            },
+            {
+                "steps": 19999982,
+                "file_path": "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-19999982.onnx",
+                "reward": -586.2707105477651,
+                "creation_time": 1674945126.195161,
+                "auxillary_file_paths": [
+                    "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-19999982.pt"
+                ]
+            },
+            {
+                "steps": 20000046,
+                "file_path": "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-20000046.onnx",
+                "reward": -586.2707105477651,
+                "creation_time": 1674945126.324687,
+                "auxillary_file_paths": [
+                    "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-20000046.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 20000046,
+            "file_path": "results\\PostEvaluation5\\AirplaneAI.onnx",
+            "reward": -586.2707105477651,
+            "creation_time": 1674945126.324687,
+            "auxillary_file_paths": [
+                "results\\PostEvaluation5\\AirplaneAI\\AirplaneAI-20000046.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.13.1"
+    }
+}
