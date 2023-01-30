@@ -539,6 +539,7 @@ MonoBehaviour:
   episodeText: {fileID: 0}
   distanceText: {fileID: 0}
   stepsText: {fileID: 0}
+  goalsText: {fileID: 0}
 --- !u!114 &468185431118648848
 MonoBehaviour:
   m_ObjectHideFlags: 0
