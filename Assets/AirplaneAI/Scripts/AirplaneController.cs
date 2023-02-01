@@ -93,6 +93,7 @@ public class AirplaneController : Agent
         invertedInfo = false;
         brakeInfo = false;
         steps = 0;
+        goalsAchieved = 0;
 
         if (thrustControlSensitivity < 0)
         {
